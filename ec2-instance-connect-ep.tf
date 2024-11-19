@@ -5,7 +5,7 @@
 resource "aws_ec2_instance_connect_endpoint" "eice" {
   preserve_client_ip = false
   security_group_ids = [aws_security_group.ec2-instance-connect-endpoint-sg.id]
-  subnet_id          = "subnet-0e0731b1d4939522c"
+  subnet_id          = aws_subnet.my_private_subnet1.id
   tags = {
     Name = "DEV-EICE"
   }
