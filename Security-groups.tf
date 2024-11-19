@@ -23,6 +23,9 @@ resource "aws_security_group" "alb-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "ALB-SG"
+  }
 }
 
 # Ec2 Instance connect endpoint SG
@@ -36,6 +39,9 @@ resource "aws_security_group" "ec2-instance-connect-endpoint-sg" {
     protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }
+  tags = {
+    Name = "Ec2-instance-connect-endpoint-sg"
+  }
 }
 
 # Data migration server security group
@@ -48,6 +54,9 @@ resource "aws_security_group" "data-migration-server-sg" {
     to_port         = 22
     protocol        = "tcp"
     security_groups = [aws_security_group.ec2-instance-connect-endpoint-sg.id]
+  }
+  tags = {
+    Name = "Data-migration-server-sg"
   }
 
 }
@@ -85,6 +94,9 @@ resource "aws_security_group" "web-server-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "Web-server-SG"
+  }
 }
 
 # RDS security group
@@ -104,5 +116,8 @@ resource "aws_security_group" "rds-sg" {
     to_port         = 3306
     protocol        = "tcp"
     security_groups = [aws_security_group.data-migration-server-sg.id]
+  }
+  tags = {
+    Name = "RDS-SG"
   }
 }
