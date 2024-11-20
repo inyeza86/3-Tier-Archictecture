@@ -54,16 +54,3 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
 #     Name = "EC2 Security Group"
 #   }
 # }
-
-# # Create an EC2 Instance
-# resource "aws_instance" "example" {
-#   ami           = "ami-12345678" # Replace with your desired AMI
-#   instance_type = "t3.micro"
-#   subnet_id     = aws_subnet.private.id
-#   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
-#   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-
-#   tags = {
-#     Name = "Example EC2 Instance"
-#   }
-# }
