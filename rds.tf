@@ -71,8 +71,10 @@
 #   vpc_security_group_ids                = [aws_security_group.rds-sg.id]
 #}
 resource "aws_db_subnet_group" "my-db-subnets" {
-  name       = "db-subnets"
-  subnet_ids = [aws_subnet.my_private_subnet3.id, aws_subnet.my_private_subnet4.id]
+  name        = "db-subnets"
+  subnet_ids  = [aws_subnet.my_private_subnet3.id, aws_subnet.my_private_subnet4.id]
+  description = "db-subnets"
+  vpc_id      = aws_vpc.my_vpc.id
 
   tags = {
     Name = "db-subnets"
