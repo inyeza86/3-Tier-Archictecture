@@ -95,4 +95,5 @@ resource "aws_db_instance" "dev-rds-db" {
   vpc_security_group_ids  = [aws_security_group.rds-sg.id]
   backup_retention_period = 7
   skip_final_snapshot     = true
+
 }
