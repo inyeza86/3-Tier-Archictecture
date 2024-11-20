@@ -74,7 +74,7 @@ resource "aws_db_subnet_group" "my-db-subnets" {
   name        = "db-subnets"
   subnet_ids  = [aws_subnet.my_private_subnet3.id, aws_subnet.my_private_subnet4.id]
   description = "db-subnets"
-  vpc_id      = aws_vpc.my_vpc.id
+
 
   tags = {
     Name = "db-subnets"
@@ -94,6 +94,7 @@ resource "aws_db_instance" "dev-rds-db" {
   password                = "Inyeza1986?"
   publicly_accessible     = false
   multi_az                = false
+  db_subnet_group_name    = aws_db_subnet_group.my-db-subnets.name
   vpc_security_group_ids  = [aws_security_group.rds-sg.id]
   backup_retention_period = 7
   skip_final_snapshot     = true
